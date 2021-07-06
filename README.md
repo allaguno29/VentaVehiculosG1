@@ -1,0 +1,2 @@
+# VentaDeVehiculosG1
+El presente proyecto tiene como finalidad crear una aplicación para la compra y venta de vehículos usados. La aplicación permitirá al vendedor ingresar la información del vehículo para que esté disponible para la venta. Los vehículos que se pueden vender son autos, camionetas y motocicletas. El comprador podrá ingresar una oferta por el vehículo para que posteriormente sea contactado por el vendedor del vehículo.
