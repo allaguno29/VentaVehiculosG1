@@ -89,11 +89,14 @@ public class Vendedor {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Vendedor other = (Vendedor) obj;
-        if (!Objects.equals(this.Correo, other.Correo)) {
+        Vendedor other = (Vendedor) obj;
+        if (this.Correo==other.Correo)
+            return true;
+        else {
+            System.out.println("Usted ya se encuentra Registrado:");
             return false;
         }
-        return true;
+        
     }
     
     
