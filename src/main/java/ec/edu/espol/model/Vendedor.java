@@ -114,7 +114,7 @@ public class Vendedor {
         }
             for(Vendedor vend: vendedores){
                 if(vend.correo.equals(correo)){
-                    c=vend.clave;
+                    c=vend.Clave;
                 }
             } 
         return password.equals(c);
