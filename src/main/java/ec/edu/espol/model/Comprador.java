@@ -81,7 +81,7 @@ public class Comprador {
         }
     }
 
-        public static Comprador registrar(Scanner sc){
+        public static Comprador registrar(Scanner sc,  String nomFile){
             
             System.out.println("Ingrese Nombres: ");
             String Nombres=sc.next();
@@ -93,9 +93,49 @@ public class Comprador {
             String Correo=sc.next();
             System.out.println("Ingrese Clave");
             String Clave=sc.next();
-            Comprador registrar=new Comprador(Nombres,Apellidos,CorreoElectronico,Organizacion,Correo,Clave);
+            int id = Util.nextID(nomFile);
+            Comprador registrar=new Comprador(id,Nombres,Apellidos,Organizacion,Correo,Clave);
             return registrar;   
 
+        }
+            //Escribir el archivo
+        public void saveFile(String nomFile){
+            try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(nomFile),true))){
+            pw.println(this.id+"|"+this.Correo+"|"+this.Nombres+"|"+this.Apellidos+"|"+ this.Organizacion+"|"+this.Clave );
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            
+        }
+        }
+        
+        
+        public static void saveFile(ArrayList<Comprador> compradores, String nomFile){
+            try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(nomFile),true))){
+            for (Comprador c : compradores)
+                pw.println(v.id+"|"+v.Correo+"|"+v.Nombres+"|"+v.Apellidos+"|"+ v.Organizacion+"|"+v.Clave );
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        }
+         
+      
+        public static ArrayList<Comprador> readFile(String nomFile) throws FileNotFoundException{
+            ArrayList<Comprador> compradores = new ArrayList<>();
+            try(Scanner sc = new Scanner(new File(nomFile))){
+                while(sc.hasNextLine())
+                {
+                    String linea = sc.nextLine();
+                    String[] tokens = linea.split("\\|");
+                    Comprador c = new Comprador(Integer.parseInt(tokens[0]), tokens[1],tokens[2], tokens[3], tokens[4],tokens[5]);
+                    compradores.add(v);
+                }
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+            return compradores;
         }
 }
 
