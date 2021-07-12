@@ -14,15 +14,13 @@ import java.util.Scanner;
 public class Comprador {
     private String Nombres;
     private String Apellidos;
-    private String CorreoElectrónico;
     private String Organización;
     private String Correo;
     private String Clave;
     
-    public Comprador( String Nombres,String Apellidos,String CorreoElectrónico, String Organización, String Correo,String Clave){
+    public Comprador( String Nombres,String Apellidos, String Organización, String Correo,String Clave){
         this.Nombres= Nombres;
         this.Apellidos= Apellidos;
-        this.CorreoElectrónico= CorreoElectrónico;
         this.Organización= Organización;
         this.Correo= Correo;
         this.Clave= Clave;
@@ -42,14 +40,6 @@ public class Comprador {
 
     public void setApellidos(String Apellidos) {
         this.Apellidos = Apellidos;
-    }
-
-    public String getCorreoElectrónico() {
-        return CorreoElectrónico;
-    }
-
-    public void setCorreoElectrónico(String CorreoElectrónico) {
-        this.CorreoElectrónico = CorreoElectrónico;
     }
 
     public String getOrganización() {
@@ -97,8 +87,6 @@ public class Comprador {
             String Nombres=sc.next();
             System.out.println("Ingrese Apellidos: ");
             String Apellidos=sc.next();
-            System.out.println("Ingrese Correo electronico: ");
-            String CorreoElectronico=sc.next();
             System.out.println("Ingrese Organizacion: ");
             String Organizacion=sc.next();
             System.out.println("Ingrese Correo");
