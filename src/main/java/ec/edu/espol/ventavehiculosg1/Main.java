@@ -52,6 +52,56 @@ public class Main {
                                 System.out.println("Nuevo Vehiculo Ingresado!");
                                 break;
                             case "3":
+				    Scanner sc = new Scanner(System.in);
+                                    System.out.println("Ingrese su correo: ");
+                                    String mail = sc.nextLine();
+                                    System.out.println("Ingrese su clave: ");
+                                    String clave = sc.nextLine();
+                                    // verificar clave
+                                    ListaOfertas ofertasParaVendedor = lista.filtarOfertasPorVendedor(mail);
+                                    System.out.println("Ingrese la placa (formato AAA-000): ");
+                                    String placa = sc.nextLine();
+                                    verificarPlaca(placa);
+                                    ListaOfertas ofertasPorPlaca = ofertasParaVendedor.filtarOfertasPorPlaca(placa);
+                                    if (verificarPlaca(placa)){  
+                                        System.out.println(ofertasPorPlaca.getOfertas().get(0).getModelo() +"Precio: ");            
+                                        System.out.println("Se han realizado "+ ofertasPorPlaca.getOfertas().size()+ " ofertas");
+                                        for(int i=0; i< ofertasPorPlaca.getOfertas().size();){
+                                            System.out.println("Oferta "+ (i+1));
+                                            System.out.println("Correo: "+ ofertasPorPlaca.getOfertas().get(i).getCorreo());
+                                            System.out.println("Precio Ofertado: "+ ofertasPorPlaca.getOfertas().get(i).getValor());
+                                            if(i<=0){
+                                                System.out.println("1. Siguiente Oferta\n2. Aceptar Oferta");
+                                                int ingreso = sc.nextInt();
+                                                if(ingreso == 1 && validarInt(ingreso,2,1)){
+                                                    i++;
+                                                }
+                                                if(ingreso == 2 && validarInt(ingreso,2,1)){
+                                                    //mandar correo
+                                                    //elimnar vehiculo del sistema
+                                                    lista.removerOfertas(placa);
+
+                                                }                    
+                                            }
+                                            else {
+                                                System.out.println("1. Siguiente Oferta\n2. Anterior Oferta\n3. Aceptar Oferta");
+                                                int ingreso = sc.nextInt();
+                                                if(ingreso == 1 && validarInt(ingreso,3,1)){
+                                                    i++;
+                                                }
+                                                if(ingreso == 2 && validarInt(ingreso,3,1)){
+                                                    i--;
+                                                }
+                                                if(ingreso == 3 && validarInt(ingreso,3,1)){
+                                                    //mandar correo 
+                                                    //eliminar vehiculo
+                                                    lista.removerOfertas(placa);
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
                                 System.out.println("Oferta Aceptada");
                                 break;
                             case "4":   
@@ -74,6 +124,7 @@ public class Main {
                                 System.out.println("Nuevo Comprador Registrado!");
                                 break;
                             case "2":
+				
                                 System.out.println("Oferta Aceptada");
                                 break;
                         }
