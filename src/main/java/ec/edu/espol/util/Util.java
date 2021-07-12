@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Util {
     private Util(){}
     
-    public static int nextID(String nomfilr){
+    public static int nextID(String nomfile){
         int id = 0;
         try (Scanner sc = new Scanner(new File(nomfile))){
             while (sc.hasNextLine()){

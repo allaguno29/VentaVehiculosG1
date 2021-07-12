@@ -5,6 +5,8 @@
  */
 package ec.edu.espol.model;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Ariana Llaguno

@@ -5,49 +5,34 @@
  */
 package ec.edu.espol.model;
 
+import ec.edu.espol.util.Util;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
 
 /**
  *
  * @author Ariana Llaguno
  */
 public class Vendedor {
+    private int id;
     private String Nombres;
     private String Apellidos;
     private String Organizacion;
     private String Correo;
     private String Clave;
 
-    public Vendedor(String Nombres, String Apellidos, String Organizacion, String Correo, String Clave) {
+    public Vendedor(int id, String Nombres, String Apellidos, String Organizacion, String Correo, String Clave) {
+        this.id = id;
         this.Nombres = Nombres;
         this.Apellidos = Apellidos;
         this.Organizacion = Organizacion;
         this.Correo = Correo;
         this.Clave = Clave;
-    }
-
-    public String getNombres() {
-        return Nombres;
-    }
-
-    public void setNombres(String Nombres) {
-        this.Nombres = Nombres;
-    }
-
-    public String getApellidos() {
-        return Apellidos;
-    }
-
-    public void setApellidos(String Apellidos) {
-        this.Apellidos = Apellidos;
-    }
-
-    public String getOrganizacion() {
-        return Organizacion;
-    }
-
-    public void setOrganizacion(String Organizacion) {
-        this.Organizacion = Organizacion;
     }
 
     public String getCorreo() {
@@ -99,6 +84,62 @@ public class Vendedor {
         
     }
     
-    
+        public static Vendedor registrar(Scanner sc, String nomFile){
+            System.out.println("Ingrese Nombres: ");
+            String Nombres=sc.next();
+            System.out.println("Ingrese Apellidos: ");
+            String Apellidos=sc.next();
+            System.out.println("Ingrese Correo electronico: ");
+            String CorreoElectronico=sc.next();
+            System.out.println("Ingrese Organizacion: ");
+            String Organizacion=sc.next();
+            System.out.println("Ingrese Correo");
+            String Correo=sc.next();
+            System.out.println("Ingrese Clave");
+            String Clave=sc.next();
+            int id = Util.nextID(nomFile);
+            Vendedor registrar=new Vendedor(id,Nombres,Apellidos,Organizacion,Correo,Clave);
+            return registrar; 
+        }
+        
+        //Escribir el archivo
+        public void saveFile(String nomFile){
+            try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(nomFile),true))){
+            pw.println(this.id+"|"+this.Correo+"|"+this.Nombres+"|"+this.Apellidos+"|"+ this.Organizacion+"|"+this.Clave );
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            
+        }
+        }
+        
+        //Consultar informacion
+        public static void saveFile(ArrayList<Vendedor> vendedores, String nomFile){
+            try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(nomFile),true))){
+            for (Vendedor v : vendedores)
+                pw.println(v.id+"|"+v.Correo+"|"+v.Nombres+"|"+v.Apellidos+"|"+ v.Organizacion+"|"+v.Clave );
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        }
+         
+        //Leer archivo
+        public static ArrayList<Vendedor> readFile(String nomFile) throws FileNotFoundException{
+            ArrayList<Vendedor> vendedores = new ArrayList<>();
+            try(Scanner sc = new Scanner(new File(nomFile))){
+                while(sc.hasNextLine())
+                {
+                    String linea = sc.nextLine();
+                    String[] tokens = linea.split("\\|");
+                    Vendedor v = new Vendedor(Integer.parseInt(tokens[0]), tokens[1],tokens[2], tokens[3], tokens[4],tokens[5]);
+                    vendedores.add(v);
+                }
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+            return vendedores;
+        }
    
 }

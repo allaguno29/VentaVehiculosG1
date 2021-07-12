@@ -13,7 +13,7 @@ import java.util.Scanner;
  * @author Ariana Llaguno
  */
 public class Main {
-    static Scanner sc = new Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
     /**
      * @param args the command line arguments
      */
@@ -45,6 +45,7 @@ public class Main {
                          opcion1 = sc.nextLine();
                         switch (opcion1){
                             case "1":
+                                
                                 System.out.println("Nuevo Vendedor Registrado!");
                                 break;
                             case "2":
