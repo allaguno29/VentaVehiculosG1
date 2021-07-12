@@ -65,6 +65,17 @@ public class Comprador {
     public void setClave(String Clave) {
         this.Clave = Clave;
     }
+    @Override
+    public String toString() {
+        return "Vendedor{" + "Nombres=" + Nombres + ", Apellidos=" + Apellidos + ", Organizacion=" + Organizacion + ", Correo=" + Correo + ", Clave=" + Clave + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 19 * hash + Objects.hashCode(this.Clave);
+        return hash;
+    }
     public boolean equals(Object o){
         if(this==o)
             return true;
