@@ -138,7 +138,6 @@ public class Vehiculo {
             System.out.println(e.getMessage());
 
         }
-<<<<<<< HEAD
     }
 
     //Consultar informacion
@@ -167,46 +166,4 @@ public class Vehiculo {
         }
         return vehiculos;
     }
-=======
-	public String getPlaca() {
-            return placa;
-        }
-
-        public String getMarca() {
-            return marca;
-        }
-
-        public String getModelo() {
-            return modelo;
-        }
-
-        public String getTipomotor() {
-            return tipomotor;
-        }
-
-        public String getAno() {
-            return ano;
-        }
-
-        public String getRecorrido() {
-            return recorrido;
-        }
-
-        public String getColor() {
-            return color;
-        }
-
-        public String getTipocomb() {
-            return tipocomb;
-        }
-
-        public String getPrecio() {
-            return precio;
-        }
-
-        public String getTipovehi() {
-            return tipovehi;
-        }
-
->>>>>>> 80f2b390789e368d18b0a6998c7421d5e8703153
 }

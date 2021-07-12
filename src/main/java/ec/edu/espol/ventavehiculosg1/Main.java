@@ -34,6 +34,7 @@ public class Main {
      * @param args the command line arguments
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     public static void main(String[] args) {
         // TODO code application logic here
@@ -47,6 +48,9 @@ public class Main {
 >>>>>>> 64bef7936e388ff3ea9faa04e239b33ff7c08d97
     public static boolean verificarPlaca(String placa){
 >>>>>>> 80f2b390789e368d18b0a6998c7421d5e8703153
+=======
+     public static boolean verificarPlaca(String placa){
+>>>>>>> b1c5053b62c25106d4cbfe02448ca3f170220a77
         String[] placaDividida = placa.split("-");
         boolean e = true;
         if (placaDividida[0].length() != 3) {
@@ -73,6 +77,7 @@ public class Main {
         return e;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public void menu() {
         String opcion = "";
@@ -87,6 +92,46 @@ public class Main {
             opcion = sc.nextLine();
             switch (opcion) {
 =======
+=======
+/**
+     * @param tipo
+     * @param parametro
+     * @param lista
+     * @param args the command line arguments
+     * @return 
+     */
+    public static List filtrar(String tipo, String parametro, List<Vehiculo> lista){
+        List filtrada = new ArrayList<>();
+        for(int i=0; i<lista.size();i++){
+            if (tipo.equals("marca") && !"0".equals(parametro))
+                if(lista.get(i).getMarca().equals(parametro))
+                    filtrada.add(lista.get(i));
+            if (tipo.equals("recorrido") && !"0".equals(parametro))
+                if(lista.get(i).getRecorrido().equals(parametro))
+                    filtrada.add(lista.get(i));
+            if (tipo.equals("año") && !"0".equals(parametro))
+                if(lista.get(i).getAno().equals(parametro))
+                    filtrada.add(lista.get(i));
+            if (tipo.equals("precio") && !"0".equals(parametro))
+                if(lista.get(i).getPrecio().equals(parametro))
+                    filtrada.add(lista.get(i));
+        }
+        return filtrada;
+    }
+     public static List crearLista(String archivo) throws FileNotFoundException, IOException{
+        String vehiculo;
+        List<Vehiculo> vehiculos = new ArrayList<>();
+        FileReader f = new FileReader(archivo);
+        BufferedReader b = new BufferedReader(f);
+        while((vehiculo = b.readLine())!=null) {
+            String[] v = vehiculo.split(",");
+            Vehiculo vH = new Vehiculo(v[0], v[1], v[2],v[3],v[4],v[5],v[6],v[7],v[8],v[9]);
+            vehiculos.add(vH);
+        }
+        b.close();
+        return vehiculos;
+    }
+>>>>>>> b1c5053b62c25106d4cbfe02448ca3f170220a77
     public static void main(String[] args) {
         // TODO code application logic here
     }
@@ -203,7 +248,54 @@ public class Main {
                                 System.out.println("Nuevo Comprador Registrado!");
                                 break;
                             case "2":
-				
+				String archivo = "archivoVehiculos.txt";
+                                    List<Vehiculo> vehiculos = crearLista(archivo);
+                                    Scanner sc = new Scanner(System.in);
+                                    System.out.println("Ingrese criterios de busqueda del carro que desea\n (Si el criterio no es necesario ingrese 0)");
+                                    System.out.println("Tipo de vehiculo (Marca): ");
+                                    String marca = sc.nextLine();
+                                    vehiculos = filtrar("marca",marca,vehiculos);
+                                    System.out.println("Recorrido:");
+                                    String recorridoMax = sc.nextLine();
+                                    vehiculos = filtrar("recorrido",recorridoMax,vehiculos);
+                                    System.out.println("Año: ");
+                                    String añoMax = sc.nextLine();
+                                    vehiculos = filtrar("año",añoMax,vehiculos);
+                                    System.out.println("Precio: ");
+                                    String precioMax = sc.nextLine();
+                                    vehiculos = filtrar("recorrido",precioMax,vehiculos);
+                                    //
+                                    for(int i=0; i< vehiculos.size();){
+                                        System.out.println("Vehiculo 1 "+ (i+1));
+                                        //System.out.println("Correo: "+ ofertasPorPlaca.getOfertas().get(i).getCorreo());
+                                        //System.out.println("Precio Ofertado: "+ ofertasPorPlaca.getOfertas().get(i).getValor());
+                                        if(i<=0){
+                                            System.out.println("1. Siguiente Oferta\n2. Aceptar Oferta");
+                                            if(sc.nextInt()== 1){
+                                                i++;
+                                            }
+                                            if(sc.nextInt()==2){
+                                                //mandar correo
+                                                //elimnar vehiculo del sistema
+                                                lista.removerOfertas(placa);
+
+                                            }                    
+                                        }
+                                        else {
+                                            System.out.println("1. Siguiente Oferta\n2. Anterior Oferta\n3. Aceptar Oferta");
+                                            if(sc.nextInt()== 1){
+                                                i++;
+                                            }
+                                            if(sc.nextInt()==2){
+                                                i--;
+                                            }
+                                            if(sc.nextInt()==3){
+                                                //mandar correo 
+                                                //eliminar vehiculo
+                                                lista.removerOfertas(placa);
+                                            }
+                                        }
+                                    //}
                                 System.out.println("Oferta Aceptada");
                                 break;
                         }
