@@ -5,6 +5,8 @@
  */
 package ec.edu.espol.ventavehiculosg1;
 
+
+import java.util.Scanner;
 import ec.edu.espol.model.Autos;
 import ec.edu.espol.model.Camionetas;
 import ec.edu.espol.model.Comprador;
@@ -13,20 +15,16 @@ import ec.edu.espol.model.Motos;
 import ec.edu.espol.model.Oferta;
 import ec.edu.espol.model.Vehiculo;
 
-import java.util.Scanner;
-
 /**
  *
  * @author Ariana Llaguno
  */
 public class Main {
+    //.fi
     Scanner sc = new Scanner(System.in);
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
     public static boolean verificarPlaca(String placa){
         String[] placaDividida = placa.split("-");
         boolean e = true;
@@ -52,6 +50,10 @@ public class Main {
         }
         return e;
     }
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
+    
     public void menu(){
         String opcion="";
 	
