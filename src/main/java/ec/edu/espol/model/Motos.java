@@ -10,13 +10,10 @@ package ec.edu.espol.model;
  * @author Ariana Llaguno
  */
 public class Motos extends Vehiculo{
-    private String vidrios;
-    private String transmision;
-    
-    public Motos(String vidrios, String transmision, String placa, String marca, String modelo, String tipomotor, String ano, String recorrido, String color, String tipocomb, String precio, String tipovehi){
-        super( placa, marca,  modelo,  tipomotor, ano, recorrido, color, tipocomb,  precio,  tipovehi);
-        this.vidrios = vidrios;
-        this.transmision = transmision;
+
+    public Motos(int id, String placa, String marca, String modelo, String tipomotor, String ano, String recorrido, String color, String tipocomb, String precio, String tipovehi){
+        super( id,placa, marca,  modelo,  tipomotor, ano, recorrido, color, tipocomb,  precio,  tipovehi);
+        
         
     }
 }

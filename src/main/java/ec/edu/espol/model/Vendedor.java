@@ -84,7 +84,7 @@ public class Vendedor {
         
     }
     
-        public static Vendedor registrar(Scanner sc, String nomFile){
+        public static void Vendedoregistrar(Scanner sc, String nomFile){
             System.out.println("Ingrese Nombres: ");
             String Nombres=sc.next();
             System.out.println("Ingrese Apellidos: ");
@@ -99,7 +99,7 @@ public class Vendedor {
             String Clave=sc.next();
             int id = Util.nextID(nomFile);
             Vendedor registrar=new Vendedor(id,Nombres,Apellidos,Organizacion,Correo,Clave);
-            return registrar; 
+            registrar.saveFile(nomFile);
         }
         
         //Escribir el archivo

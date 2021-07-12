@@ -77,7 +77,7 @@ public class Comprador {
         }
     }
 
-        public static Comprador registrar(Scanner sc,  String nomFile){
+        public static void Compradoregistrar(Scanner sc,  String nomFile){
             
             System.out.println("Ingrese Nombres: ");
             String Nombres=sc.next();
@@ -91,7 +91,7 @@ public class Comprador {
             String Clave=sc.next();
             int id = Util.nextID(nomFile);
             Comprador registrar=new Comprador(id,Nombres,Apellidos,Organizacion,Correo,Clave);
-            return registrar;   
+            registrar.saveFile(nomFile);   
 
         }
             //Escribir el archivo
