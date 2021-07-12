@@ -18,8 +18,12 @@ public class Oferta {
     private String modelo;
     private String correoComprador;
     
-    public Oferta(Scanner sc){
-        this.valor = sc.nextInt();
+    public Oferta(String correo, int valor, String placa, String modelo, String correoComprador) {
+        this.correo = correo;
+        this.valor = valor;
+        this.placa = placa;
+        this.modelo = modelo;
+        this.correoComprador = correoComprador;
     }
 
     public String getCorreo() {

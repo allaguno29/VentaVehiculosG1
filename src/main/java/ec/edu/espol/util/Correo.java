@@ -29,7 +29,7 @@ public class Correo {
      
     public Correo(){
     }
-    public void enviarCorreo(String destinatario, String asunto, String mensaje) {
+    public static void enviarCorreo(String destinatario, String asunto, String mensaje) {
         
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
