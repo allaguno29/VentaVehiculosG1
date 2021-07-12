@@ -5,6 +5,8 @@
  */
 package ec.edu.espol.ventavehiculosg1;
 
+
+import java.util.Scanner;
 import ec.edu.espol.model.Autos;
 import ec.edu.espol.model.Camionetas;
 import ec.edu.espol.model.Comprador;
@@ -15,27 +17,36 @@ import ec.edu.espol.model.Validacion;
 import ec.edu.espol.model.Vehiculo;
 import ec.edu.espol.model.Vendedor;
 
-import java.util.Scanner;
-
 /**
  *
  * @author Ariana Llaguno
  */
 public class Main {
+<<<<<<< HEAD
 
+=======
+    //.fi
+>>>>>>> 80f2b390789e368d18b0a6998c7421d5e8703153
     Scanner sc = new Scanner(System.in);
     Validacion val = new Validacion();
 
     /**
      * @param args the command line arguments
      */
+<<<<<<< HEAD
+=======
     public static void main(String[] args) {
         // TODO code application logic here
         Main m = new Main();
         m.menu();
     }
+<<<<<<< HEAD
 
     public static boolean verificarPlaca(String placa) {
+=======
+>>>>>>> 64bef7936e388ff3ea9faa04e239b33ff7c08d97
+    public static boolean verificarPlaca(String placa){
+>>>>>>> 80f2b390789e368d18b0a6998c7421d5e8703153
         String[] placaDividida = placa.split("-");
         boolean e = true;
         if (placaDividida[0].length() != 3) {
@@ -61,6 +72,7 @@ public class Main {
         }
         return e;
     }
+<<<<<<< HEAD
 
     public void menu() {
         String opcion = "";
@@ -74,6 +86,25 @@ public class Main {
             System.out.print("Ingrese opcion: ");
             opcion = sc.nextLine();
             switch (opcion) {
+=======
+    public static void main(String[] args) {
+        // TODO code application logic here
+    }
+    
+    public void menu(){
+        String opcion="";
+	
+       
+        while(!opcion.equals("3")){
+              System.out.println("╔                Menu                  ╗");
+              System.out.println("║ 1. Vendedor                          ║");
+              System.out.println("║ 2. Comprador                         ║");
+              System.out.println("║ 3. Salir                             ║");
+              System.out.println("╚                                      ╝");
+              System.out.print("Ingrese opcion: ");      
+              opcion = sc.nextLine();
+            switch (opcion){
+>>>>>>> 80f2b390789e368d18b0a6998c7421d5e8703153
                 case "1":
                     String opcion1 = "";
                     while (!opcion1.equals("4")) {
