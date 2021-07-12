@@ -94,7 +94,27 @@ public class Comprador {
             return registrar;   
 
         }
-            //Escribir el archivo
+    
+        public static boolean verificador(String nomfile,String correo,String password){
+        ArrayList<Comprador> compradores = Comprador.readFile(nomfile);
+        String c=null;
+        try 
+        {
+            password = Util.toHexString(Util.getSHA(password));
+            password = Util.toHexString(Util.getSHA(password));
+        }
+        catch (NoSuchAlgorithmException e) { 
+            System.out.println("Exception thrown for incorrect algorithm: " + e); 
+        }
+            for(Comprador comp: compradores){
+                if(comp.correoelec.equals(correo)){
+                    c=comp.clave;
+                }
+            } 
+        return password.equals(c);
+        }   
+        
+    
         public void saveFile(String nomFile){
             try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(nomFile),true))){
             pw.println(this.id+"|"+this.Correo+"|"+this.Nombres+"|"+this.Apellidos+"|"+ this.Organizacion+"|"+this.Clave );
