@@ -5,6 +5,13 @@
  */
 package ec.edu.espol.ventavehiculosg1;
 
+import ec.edu.espol.model.Autos;
+import ec.edu.espol.model.Camionetas;
+import ec.edu.espol.model.Comprador;
+import ec.edu.espol.model.ListaOfertas;
+import ec.edu.espol.model.Motos;
+import ec.edu.espol.model.Oferta;
+import ec.edu.espol.model.Vehiculo;
 
 import java.util.Scanner;
 
