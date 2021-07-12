@@ -101,6 +101,24 @@ public class Vendedor {
             Vendedor registrar=new Vendedor(id,Nombres,Apellidos,Organizacion,Correo,Clave);
             return registrar; 
         }
+        public static boolean verificador(String nomfile,String correo,String password){
+        ArrayList<Vendedor> vendedores = Vendedor.readFile(nomfile);
+        String c=null;
+        try 
+        {
+            password = Util.toHexString(Util.getSHA(password));
+            password = Util.toHexString(Util.getSHA(password));
+        }
+        catch (NoSuchAlgorithmException e) { 
+            System.out.println("Exception thrown for incorrect algorithm: " + e); 
+        }
+            for(Comprador comp: compradores){
+                if(comp.correoelec.equals(correo)){
+                    c=comp.clave;
+                }
+            } 
+        return password.equals(c);
+        }   
         
         //Escribir el archivo
         public void saveFile(String nomFile){
