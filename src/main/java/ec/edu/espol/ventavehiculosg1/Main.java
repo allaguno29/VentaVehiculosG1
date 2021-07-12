@@ -87,6 +87,18 @@ public class Main {
         }
         b.close();
         return vehiculos;
+	public static List crearListaOfertas(String archivo) throws FileNotFoundException, IOException{
+        	String vehiculo;
+        	List<Oferta> vehiculos = new ArrayList<>();
+        	FileReader f = new FileReader(archivo);
+        	BufferedReader b = new BufferedReader(f);
+        	while((vehiculo = b.readLine())!=null) {
+            		String[] v = vehiculo.split(",");
+            		Oferta vH = new Oferta(v[0], v[1], v[2],v[3],v[4]);
+            		vehiculos.add(vH);
+        	}
+         b.close();
+         return vehiculos;
     }
     public static void main(String[] args) {
         // TODO code application logic here
@@ -125,6 +137,7 @@ public class Main {
                                 System.out.println("Nuevo Vehiculo Ingresado!");
                                 break;
                             case "3":
+				    lista = crearlistaOfertas("ofertas.txt")
 				    Scanner sc = new Scanner(System.in);
                                     System.out.println("Ingrese su correo: ");
                                     String mail = sc.nextLine();
@@ -150,8 +163,7 @@ public class Main {
                                                     i++;
                                                 }
                                                 if(ingreso == 2 && validarInt(ingreso,2,1)){
-                                                    //mandar correo
-                                                    //elimnar vehiculo del sistema
+                                                    Correo.enviarCorreo(ofertasPorPlaca.getOfertas()get(i),"Oferta","Se ha aceptado su oferta")
                                                     lista.removerOfertas(placa);
 
                                                 }                    
@@ -166,8 +178,7 @@ public class Main {
                                                     i--;
                                                 }
                                                 if(ingreso == 3 && validarInt(ingreso,3,1)){
-                                                    //mandar correo 
-                                                    //eliminar vehiculo
+                                                    Correo.enviarCorreo(ofertasPorPlaca.getOfertas()get(i).getCorreo(),"Oferta","Se ha aceptado su oferta")
                                                     lista.removerOfertas(placa);
                                                 }
                                             }
@@ -223,10 +234,15 @@ public class Main {
                                             if(sc.nextInt()== 1){
                                                 i++;
                                             }
-                                            if(sc.nextInt()==2){
-                                                //mandar correo
-                                                //elimnar vehiculo del sistema
-                                                lista.removerOfertas(placa);
+                                            if(sc.nextInt()==2){				
+                                                System.out.println("Cuanto desea ofertar?");
+                                                String of = sc.nextLine();
+                                                System.out.println("ingrese su correo");
+                                                String correoC = sc.nextLine();
+                                                Oferta o = new Oferta("correo",of,vehiculos.get(i).getPlaca(),vehiculos.get(i).getModelo(),correoC);
+                                                fw=new FileWriter("ofertas.txt");
+        					BufferedWriter bw=new BufferedWriter(fw);
+        					bw.write(o);
 
                                             }                    
                                         }
@@ -239,13 +255,18 @@ public class Main {
                                                 i--;
                                             }
                                             if(sc.nextInt()==3){
-                                                //mandar correo 
-                                                //eliminar vehiculo
-                                                lista.removerOfertas(placa);
+                                                System.out.println("Cuanto desea ofertar?");
+                                                String of = sc.nextLine();
+                                                System.out.println("ingrese su correo");
+                                                String correoC = sc.nextLine();
+                                                Oferta o = new Oferta("correo",of,vehiculos.get(i).getPlaca(),vehiculos.get(i).getModelo(),correoC);
+                                                fw=new FileWriter("ofertas.txt");
+        					BufferedWriter bw=new BufferedWriter(fw);
+        					bw.write(o);
                                             }
                                         }
                                     //}
-                                System.out.println("Oferta Aceptada");
+                                System.out.println("Oferta Enviada");
                                 break;
                         }
                      }
