@@ -104,11 +104,11 @@ public class Comprador {
             password = Util.toHexString(Util.getSHA(password));
         }
         catch (NoSuchAlgorithmException e) { 
-            System.out.println("Exception thrown for incorrect algorithm: " + e); 
+            System.out.println("Algoritmo Incorrecto: " + e); 
         }
             for(Comprador comp: compradores){
-                if(comp.correoelec.equals(correo)){
-                    c=comp.clave;
+                if(comp.Correo.equals(correo)){
+                    c=comp.Clave;
                 }
             } 
         return password.equals(c);
