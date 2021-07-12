@@ -19,6 +19,8 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Main m = new Main();
+        m.menu();
     }
     public void menu(){
         String opcion="";
