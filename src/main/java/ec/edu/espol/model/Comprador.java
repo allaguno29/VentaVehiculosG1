@@ -14,15 +14,13 @@ import java.util.Scanner;
 public class Comprador {
     private String Nombres;
     private String Apellidos;
-    private String CorreoElectrónico;
     private String Organización;
     private String Correo;
     private String Clave;
     
-    public Comprador( String Nombres,String Apellidos,String CorreoElectrónico, String Organización, String Correo,String Clave){
+    public Comprador( String Nombres,String Apellidos, String Organización, String Correo,String Clave){
         this.Nombres= Nombres;
         this.Apellidos= Apellidos;
-        this.CorreoElectrónico= CorreoElectrónico;
         this.Organización= Organización;
         this.Correo= Correo;
         this.Clave= Clave;
@@ -42,14 +40,6 @@ public class Comprador {
 
     public void setApellidos(String Apellidos) {
         this.Apellidos = Apellidos;
-    }
-
-    public String getCorreoElectrónico() {
-        return CorreoElectrónico;
-    }
-
-    public void setCorreoElectrónico(String CorreoElectrónico) {
-        this.CorreoElectrónico = CorreoElectrónico;
     }
 
     public String getOrganización() {
@@ -75,6 +65,17 @@ public class Comprador {
     public void setClave(String Clave) {
         this.Clave = Clave;
     }
+    @Override
+    public String toString() {
+        return "Vendedor{" + "Nombres=" + Nombres + ", Apellidos=" + Apellidos + ", Organizacion=" + Organizacion + ", Correo=" + Correo + ", Clave=" + Clave + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 19 * hash + Objects.hashCode(this.Clave);
+        return hash;
+    }
     public boolean equals(Object o){
         if(this==o)
             return true;
@@ -91,23 +92,61 @@ public class Comprador {
         }
     }
 
-        public static Comprador registrar(Scanner sc){
+        public static Comprador registrar(Scanner sc,  String nomFile){
             
             System.out.println("Ingrese Nombres: ");
             String Nombres=sc.next();
             System.out.println("Ingrese Apellidos: ");
             String Apellidos=sc.next();
-            System.out.println("Ingrese Correo electronico: ");
-            String CorreoElectronico=sc.next();
             System.out.println("Ingrese Organizacion: ");
             String Organizacion=sc.next();
             System.out.println("Ingrese Correo");
             String Correo=sc.next();
             System.out.println("Ingrese Clave");
             String Clave=sc.next();
-            Comprador registrar=new Comprador(Nombres,Apellidos,CorreoElectronico,Organizacion,Correo,Clave);
+            int id = Util.nextID(nomFile);
+            Comprador registrar=new Comprador(id,Nombres,Apellidos,Organizacion,Correo,Clave);
             return registrar;   
 
+        }
+            //Escribir el archivo
+        public void saveFile(String nomFile){
+            try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(nomFile),true))){
+            pw.println(this.id+"|"+this.Correo+"|"+this.Nombres+"|"+this.Apellidos+"|"+ this.Organizacion+"|"+this.Clave );
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            
+        }
+        }
+        
+        
+        public static void saveFile(ArrayList<Comprador> compradores, String nomFile){
+            try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(nomFile),true))){
+            for (Comprador c : compradores)
+                pw.println(v.id+"|"+v.Correo+"|"+v.Nombres+"|"+v.Apellidos+"|"+ v.Organizacion+"|"+v.Clave );
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        }
+         
+      
+        public static ArrayList<Comprador> readFile(String nomFile) throws FileNotFoundException{
+            ArrayList<Comprador> compradores = new ArrayList<>();
+            try(Scanner sc = new Scanner(new File(nomFile))){
+                while(sc.hasNextLine())
+                {
+                    String linea = sc.nextLine();
+                    String[] tokens = linea.split("\\|");
+                    Comprador c = new Comprador(Integer.parseInt(tokens[0]), tokens[1],tokens[2], tokens[3], tokens[4],tokens[5]);
+                    compradores.add(v);
+                }
+            }
+            catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+            return compradores;
         }
 }
 
