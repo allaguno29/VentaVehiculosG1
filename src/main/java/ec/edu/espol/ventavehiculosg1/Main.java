@@ -29,8 +29,34 @@ public class Main {
         Main m = new Main();
         m.menu();
     }
+    public static boolean verificarPlaca(String placa){
+        String[] placaDividida = placa.split("-");
+        boolean e = true;
+        if (placaDividida[0].length()!=3){
+            System.out.println("Error de ingreso de placa");
+            e = false;
+        }
+        if (placaDividida[1].length()>4 && placaDividida[1].length()<3){
+            System.out.println("Error de ingreso de placa");
+            e  = false;
+        }
+        return e;
+     }
+     public static boolean validarInt(int valor,int max, int min){
+        boolean e = true;
+        if (valor<min){
+            System.out.println("Error de ingreso");
+            e = false;
+        }
+        if (valor>max){
+            System.out.println("Error de ingreso");
+            e = false;
+        }
+        return e;
+    }
     public void menu(){
         String opcion="";
+	
        
         while(!opcion.equals("3")){
               System.out.println("╔                Menu                  ╗");
