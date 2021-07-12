@@ -16,41 +16,32 @@ import ec.edu.espol.model.Oferta;
 import ec.edu.espol.model.Validacion;
 import ec.edu.espol.model.Vehiculo;
 import ec.edu.espol.model.Vendedor;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Ariana Llaguno
  */
 public class Main {
-<<<<<<< HEAD
-
-=======
-    //.fi
->>>>>>> 80f2b390789e368d18b0a6998c7421d5e8703153
     Scanner sc = new Scanner(System.in);
     Validacion val = new Validacion();
 
     /**
      * @param args the command line arguments
      */
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
     public static void main(String[] args) {
         // TODO code application logic here
         Main m = new Main();
         m.menu();
     }
-<<<<<<< HEAD
-
-    public static boolean verificarPlaca(String placa) {
-=======
->>>>>>> 64bef7936e388ff3ea9faa04e239b33ff7c08d97
+    
     public static boolean verificarPlaca(String placa){
->>>>>>> 80f2b390789e368d18b0a6998c7421d5e8703153
-=======
-     public static boolean verificarPlaca(String placa){
->>>>>>> b1c5053b62c25106d4cbfe02448ca3f170220a77
         String[] placaDividida = placa.split("-");
         boolean e = true;
         if (placaDividida[0].length() != 3) {
@@ -76,23 +67,7 @@ public class Main {
         }
         return e;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-    public void menu() {
-        String opcion = "";
-
-        while (!opcion.equals("3")) {
-            System.out.println("╔                Menu                  ╗");
-            System.out.println("║ 1. Vendedor                          ║");
-            System.out.println("║ 2. Comprador                         ║");
-            System.out.println("║ 3. Salir                             ║");
-            System.out.println("╚                                      ╝");
-            System.out.print("Ingrese opcion: ");
-            opcion = sc.nextLine();
-            switch (opcion) {
-=======
-=======
 /**
      * @param tipo
      * @param parametro
@@ -125,13 +100,12 @@ public class Main {
         BufferedReader b = new BufferedReader(f);
         while((vehiculo = b.readLine())!=null) {
             String[] v = vehiculo.split(",");
-            Vehiculo vH = new Vehiculo(v[0], v[1], v[2],v[3],v[4],v[5],v[6],v[7],v[8],v[9]);
+            Vehiculo vH = new Vehiculo(v[0], v[1], v[2],v[3],v[4],v[5],v[6],v[7],v[8],v[9],v[10]);
             vehiculos.add(vH);
         }
         b.close();
         return vehiculos;
     }
->>>>>>> b1c5053b62c25106d4cbfe02448ca3f170220a77
     public static void main(String[] args) {
         // TODO code application logic here
     }
@@ -149,7 +123,6 @@ public class Main {
               System.out.print("Ingrese opcion: ");      
               opcion = sc.nextLine();
             switch (opcion){
->>>>>>> 80f2b390789e368d18b0a6998c7421d5e8703153
                 case "1":
                     String opcion1 = "";
                     while (!opcion1.equals("4")) {
