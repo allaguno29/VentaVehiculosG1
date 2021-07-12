@@ -91,4 +91,44 @@ public class Vehiculo{
             Vehiculo registrar=new Vehiculo(placa,marca,modelo,tipomotor,ano,recorrido,color,tipocomb,precio,tipovehi);
             return registrar; 
         }
+	public String getPlaca() {
+            return placa;
+        }
+
+        public String getMarca() {
+            return marca;
+        }
+
+        public String getModelo() {
+            return modelo;
+        }
+
+        public String getTipomotor() {
+            return tipomotor;
+        }
+
+        public String getAno() {
+            return ano;
+        }
+
+        public String getRecorrido() {
+            return recorrido;
+        }
+
+        public String getColor() {
+            return color;
+        }
+
+        public String getTipocomb() {
+            return tipocomb;
+        }
+
+        public String getPrecio() {
+            return precio;
+        }
+
+        public String getTipovehi() {
+            return tipovehi;
+        }
+
 }
