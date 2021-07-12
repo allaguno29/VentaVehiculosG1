@@ -13,43 +13,61 @@ import ec.edu.espol.model.Comprador;
 import ec.edu.espol.model.ListaOfertas;
 import ec.edu.espol.model.Motos;
 import ec.edu.espol.model.Oferta;
+import ec.edu.espol.model.Validacion;
 import ec.edu.espol.model.Vehiculo;
+import ec.edu.espol.model.Vendedor;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Ariana Llaguno
  */
 public class Main {
-    //.fi
     Scanner sc = new Scanner(System.in);
+    Validacion val = new Validacion();
+
     /**
      * @param args the command line arguments
      */
-     public static boolean verificarPlaca(String placa){
+
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Main m = new Main();
+        m.menu();
+    }
+    
+    public static boolean verificarPlaca(String placa){
         String[] placaDividida = placa.split("-");
         boolean e = true;
-        if (placaDividida[0].length()!=3){
+        if (placaDividida[0].length() != 3) {
             System.out.println("Error de ingreso de placa");
             e = false;
         }
-        if (placaDividida[1].length()>4 && placaDividida[1].length()<3){
+        if (placaDividida[1].length() > 4 && placaDividida[1].length() < 3) {
             System.out.println("Error de ingreso de placa");
-            e  = false;
+            e = false;
         }
         return e;
-     }
-     public static boolean validarInt(int valor,int max, int min){
+    }
+
+    public static boolean validarInt(int valor, int max, int min) {
         boolean e = true;
-        if (valor<min){
+        if (valor < min) {
             System.out.println("Error de ingreso");
             e = false;
         }
-        if (valor>max){
+        if (valor > max) {
             System.out.println("Error de ingreso");
             e = false;
         }
         return e;
     }
+
 /**
      * @param tipo
      * @param parametro
@@ -82,7 +100,7 @@ public class Main {
         BufferedReader b = new BufferedReader(f);
         while((vehiculo = b.readLine())!=null) {
             String[] v = vehiculo.split(",");
-            Vehiculo vH = new Vehiculo(v[0], v[1], v[2],v[3],v[4],v[5],v[6],v[7],v[8],v[9]);
+            Vehiculo vH = new Vehiculo(v[0], v[1], v[2],v[3],v[4],v[5],v[6],v[7],v[8],v[9],v[10]);
             vehiculos.add(vH);
         }
         b.close();
@@ -119,24 +137,26 @@ public class Main {
             switch (opcion){
                 case "1":
                     String opcion1 = "";
-                     while(!opcion1.equals("4")){
-                         System.out.println("╔                Menu                         ╗");
-                         System.out.println("║ 1. Registrar un nuevo vendedor              ║");
-                         System.out.println("║ 2. Ingresar un nuevo vehículo               ║");
-                         System.out.println("║ 3. Aceptar oferta                           ║");
-                         System.out.println("║ 4. Regresar                                 ║");
-                         System.out.println("╚                                             ╝");
-                         System.out.print("Ingrese opcion: ");      
-                         opcion1 = sc.nextLine();
-                        switch (opcion1){
+                    while (!opcion1.equals("4")) {
+                        System.out.println("╔                Menu                         ╗");
+                        System.out.println("║ 1. Registrar un nuevo vendedor              ║");
+                        System.out.println("║ 2. Ingresar un nuevo vehículo               ║");
+                        System.out.println("║ 3. Aceptar oferta                           ║");
+                        System.out.println("║ 4. Regresar                                 ║");
+                        System.out.println("╚                                             ╝");
+                        System.out.print("Ingrese opcion: ");
+                        opcion1 = sc.nextLine();
+                        switch (opcion1) {
                             case "1":
-                                
+                                Vendedor.Vendedoregistrar(sc, "vendedor,txt");
                                 System.out.println("Nuevo Vendedor Registrado!");
                                 break;
                             case "2":
+                                Vehiculo.Vehiculoregistrar(sc,"Vehiculo,txt");
                                 System.out.println("Nuevo Vehiculo Ingresado!");
                                 break;
                             case "3":
+<<<<<<< HEAD
 				    lista = crearlistaOfertas("ofertas.txt")
 				    Scanner sc = new Scanner(System.in);
                                     System.out.println("Ingrese su correo: ");
@@ -165,9 +185,39 @@ public class Main {
                                                 if(ingreso == 2 && validarInt(ingreso,2,1)){
                                                     Correo.enviarCorreo(ofertasPorPlaca.getOfertas()get(i),"Oferta","Se ha aceptado su oferta")
                                                     lista.removerOfertas(placa);
-
-                                                }                    
+=======
+                                Scanner sc = new Scanner(System.in);
+                                System.out.println("Ingrese su correo: ");
+                                String mail = sc.nextLine();
+                                System.out.println("Ingrese su clave: ");
+                                String clave = sc.nextLine();
+                                // verificar clave
+                                ListaOfertas ofertasParaVendedor = lista.filtarOfertasPorVendedor(mail);
+                                System.out.println("Ingrese la placa (formato AAA-000): ");
+                                String placa = sc.nextLine();
+                                verificarPlaca(placa);
+                                ListaOfertas ofertasPorPlaca = ofertasParaVendedor.filtarOfertasPorPlaca(placa);
+                                if (verificarPlaca(placa)) {
+                                    System.out.println(ofertasPorPlaca.getOfertas().get(0).getModelo() + "Precio: ");
+                                    System.out.println("Se han realizado " + ofertasPorPlaca.getOfertas().size() + " ofertas");
+                                    for (int i = 0; i < ofertasPorPlaca.getOfertas().size();) {
+                                        System.out.println("Oferta " + (i + 1));
+                                        System.out.println("Correo: " + ofertasPorPlaca.getOfertas().get(i).getCorreo());
+                                        System.out.println("Precio Ofertado: " + ofertasPorPlaca.getOfertas().get(i).getValor());
+                                        if (i <= 0) {
+                                            System.out.println("1. Siguiente Oferta\n2. Aceptar Oferta");
+                                            int ingreso = sc.nextInt();
+                                            if (ingreso == 1 && validarInt(ingreso, 2, 1)) {
+                                                i++;
                                             }
+                                            if (ingreso == 2 && validarInt(ingreso, 2, 1)) {
+                                                //mandar correo
+                                                //elimnar vehiculo del sistema
+                                                lista.removerOfertas(placa);
+>>>>>>> 0e5f1d9609d3d719aea140721354e99e4ef7f4db
+
+                                            }
+<<<<<<< HEAD
                                             else {
                                                 System.out.println("1. Siguiente Oferta\n2. Anterior Oferta\n3. Aceptar Oferta");
                                                 int ingreso = sc.nextInt();
@@ -181,20 +231,41 @@ public class Main {
                                                     Correo.enviarCorreo(ofertasPorPlaca.getOfertas()get(i).getCorreo(),"Oferta","Se ha aceptado su oferta")
                                                     lista.removerOfertas(placa);
                                                 }
+=======
+                                        } else {
+                                            System.out.println("1. Siguiente Oferta\n2. Anterior Oferta\n3. Aceptar Oferta");
+                                            int ingreso = sc.nextInt();
+                                            if (ingreso == 1 && validarInt(ingreso, 3, 1)) {
+                                                i++;
                                             }
-
+                                            if (ingreso == 2 && validarInt(ingreso, 3, 1)) {
+                                                i--;
+                                            }
+                                            if (ingreso == 3 && validarInt(ingreso, 3, 1)) {
+                                                //mandar correo 
+                                                //eliminar vehiculo
+                                                lista.removerOfertas(placa);
+>>>>>>> 0e5f1d9609d3d719aea140721354e99e4ef7f4db
+                                            }
                                         }
+
                                     }
                                 }
-                                System.out.println("Oferta Aceptada");
-                                break;
-                            case "4":   
+                        }
+                        System.out.println("Oferta Aceptada");
+                        break;
+                    
+            
+            case "4":   
                                 break;
                         }
                      }
                     break;
-                    
-                case "2":
+
+        
+    
+
+    case "2":
                      String opcion2 = "";
                      while(!opcion2.equals("2")){
                          System.out.println("╔                Menu                         ╗");
@@ -205,6 +276,7 @@ public class Main {
                          opcion2 = sc.nextLine();
                         switch (opcion2){
                             case "1":
+                                Comprador.Compradoregistrar(sc,"comprador,txt");
                                 System.out.println("Nuevo Comprador Registrado!");
                                 break;
                             case "2":
@@ -279,9 +351,5 @@ public class Main {
                     System.out.println("Opcion No valida!!");
             }
         }
-        sc.close();
-    }
+    sc.close ();
 }
-
-
-

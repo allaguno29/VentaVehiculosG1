@@ -11,10 +11,15 @@ package ec.edu.espol.model;
  */
 public class Camionetas extends Vehiculo{
     private String traccion;
+    private String vidrios;
+    private String transmision;
     
-    public Camionetas(String traccion,String placa, String marca, String modelo, String tipomotor, String ano, String recorrido, String color, String tipocomb, String precio, String tipovehi){
-        super(placa, marca,  modelo, tipomotor, ano, recorrido,color, tipocomb,  precio, tipovehi);
+    public Camionetas(int id,String traccion,String placa, String marca, String modelo, String tipomotor, String ano, String recorrido, String color, String tipocomb, String precio, String tipovehi, String vidrios, String transmision){
+        super(id,placa, marca,  modelo, tipomotor, ano, recorrido,color, tipocomb,  precio, tipovehi);
         this.traccion = traccion;
+        this.transmision = transmision;
+        this.vidrios = vidrios;
+                
     }
     
 }
