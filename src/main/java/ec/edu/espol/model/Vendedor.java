@@ -113,7 +113,7 @@ public class Vendedor {
             System.out.println("Algoritmo Incorrecto: " + e); 
         }
             for(Vendedor vend: vendedores){
-                if(vend.correo.equals(correo)){
+                if(vend.Correo.equals(correo)){
                     c=vend.Clave;
                 }
             } 
