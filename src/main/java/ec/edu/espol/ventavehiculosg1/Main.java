@@ -25,6 +25,14 @@ public class Main {
     /**
      * @param args the command line arguments
      */
+<<<<<<< HEAD
+=======
+    public static void main(String[] args) {
+        // TODO code application logic here
+        Main m = new Main();
+        m.menu();
+    }
+>>>>>>> 64bef7936e388ff3ea9faa04e239b33ff7c08d97
     public static boolean verificarPlaca(String placa){
         String[] placaDividida = placa.split("-");
         boolean e = true;

@@ -5,6 +5,13 @@
  */
 package ec.edu.espol.model;
 
+import ec.edu.espol.util.Util;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -12,44 +19,22 @@ import java.util.Scanner;
  * @author Ariana Llaguno
  */
 public class Comprador {
+    private int id;
     private String Nombres;
     private String Apellidos;
-    private String Organización;
+    private String Organizacion;
     private String Correo;
     private String Clave;
     
-    public Comprador( String Nombres,String Apellidos, String Organización, String Correo,String Clave){
+    public Comprador( int id,String Nombres,String Apellidos, String Organización, String Correo,String Clave){
+        this. id = id;
         this.Nombres= Nombres;
         this.Apellidos= Apellidos;
-        this.Organización= Organización;
+        this.Organizacion= Organización;
         this.Correo= Correo;
         this.Clave= Clave;
     }
             
-    public String getNombres() {
-        return Nombres;
-    }
-
-    public void setNombres(String Nombres) {
-        this.Nombres = Nombres;
-    }
-
-    public String getApellidos() {
-        return Apellidos;
-    }
-
-    public void setApellidos(String Apellidos) {
-        this.Apellidos = Apellidos;
-    }
-
-    public String getOrganización() {
-        return Organización;
-    }
-
-    public void setOrganización(String Organización) {
-        this.Organización = Organización;
-    }
-
     public String getCorreo() {
         return Correo;
     }
@@ -109,7 +94,27 @@ public class Comprador {
             return registrar;   
 
         }
-            //Escribir el archivo
+    
+        public static boolean verificador(String nomfile,String correo,String password){
+        ArrayList<Comprador> compradores = Comprador.readFile(nomfile);
+        String c=null;
+        try 
+        {
+            password = Util.toHexString(Util.getSHA(password));
+            password = Util.toHexString(Util.getSHA(password));
+        }
+        catch (NoSuchAlgorithmException e) { 
+            System.out.println("Exception thrown for incorrect algorithm: " + e); 
+        }
+            for(Comprador comp: compradores){
+                if(comp.correoelec.equals(correo)){
+                    c=comp.clave;
+                }
+            } 
+        return password.equals(c);
+        }   
+        
+    
         public void saveFile(String nomFile){
             try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(nomFile),true))){
             pw.println(this.id+"|"+this.Correo+"|"+this.Nombres+"|"+this.Apellidos+"|"+ this.Organizacion+"|"+this.Clave );
@@ -124,7 +129,7 @@ public class Comprador {
         public static void saveFile(ArrayList<Comprador> compradores, String nomFile){
             try(PrintWriter pw= new PrintWriter(new FileOutputStream(new File(nomFile),true))){
             for (Comprador c : compradores)
-                pw.println(v.id+"|"+v.Correo+"|"+v.Nombres+"|"+v.Apellidos+"|"+ v.Organizacion+"|"+v.Clave );
+                pw.println(c.id+"|"+c.Correo+"|"+c.Nombres+"|"+c.Apellidos+"|"+ c.Organizacion+"|"+c.Clave );
         }
         catch(Exception e){
             System.out.println(e.getMessage());
@@ -140,7 +145,7 @@ public class Comprador {
                     String linea = sc.nextLine();
                     String[] tokens = linea.split("\\|");
                     Comprador c = new Comprador(Integer.parseInt(tokens[0]), tokens[1],tokens[2], tokens[3], tokens[4],tokens[5]);
-                    compradores.add(v);
+                    compradores.add(c);
                 }
             }
             catch(Exception e){
